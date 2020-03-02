@@ -1,0 +1,35 @@
+http://10.10.10.109/#
+
++++++++++++++++++++++ DB INFO ++++++++++++++++++++++++
+user_info (회원정보 테이블)
+				
+ - user_num (int(11)/PRI)
+ - user_id (varchar(15)/UNI)
+ - user_pw (varchar(20))
+ - user_other (varchar(10))
+
+notice (게시판 < user_info>)
+ - write_num (int(10)/PRI)
+ - title (varchar(30)/디폴트<no title>)
+ - text (mediumtext) 
+ - read_count (int(10))
+ - reg_date (date) >> now() 함수
+ - user_num (FOR) 
+
+upload_img(게시판이미지 < notice)
+ - write_num (FOR)
+ - up_img (blob) 파일저장
+
+dream_img ( 페이지 이미지 )
+ - img_num (int(11)/PRI) 
+ - img_name (varchar(10))
+ - img_path (varchar(255)) //이미지경로
+ - img_category(int(11)) 
+ // 이미지구분 (Ring:1 / String:2 /Feather:3 / Deco:4)
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+DBconnection() : DB 연결 메소드 
+DBTableSelect(String tableName) : DB 셀렉트 메소드 (테이블명)
+MultipartRequest : 파일 업로드 (jsp)
+class FtpClient / upload() : FTP 서버 접속 및 FTP업로드 메소드 
+

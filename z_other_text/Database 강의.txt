@@ -1,0 +1,83 @@
+DataBase(DB) / 저장소
+		- 오타오류 X
+
+> Java.연동 
+> 테이블의 집합
+
+ JDBC ( Java Database Connectivity )
+> MySQL // MS SQL 
+> Oracle SQL
+
+
+ DDL(Definition) -  Create / ALTER / DROP 
+	Create > 데이터베이스 or 테이블 생성
+	ALTER (내부속성) > rename / drop / modify / add 
+	테이블생성 -   auto_increment (자동으로 증가 + not null ) 
+		   - primary key (기본키 선언)
+
+ DDL : create, drop, alter, rename, truncate
+ DML : select(from, where), update(set), insert(into,values), delete(from)
+ DCT : grant, revoke
+ TCL : commit, rollback, savepoint
+
+
+
+///////// 데이터베이스 포팅 /////////
+ 
+https://dev.mysql.com/downloads/file/?id=489462
+zip 파일 다운 > sql.라이브러리 > 톰캣에 라이브러리에 복사
+
+///////////////////////////
+<%
+	Connection conn = null;
+	Statement stmt = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	Boolean connect = false;
+
+	String query_create = "create table student2(" + "id int not null auto_increment primary key,"
+			+ "name varchar(10)" + ")";
+
+	String query_insert = "insert into student2 values(null,'홍길동')";
+	String query_select = "select * from stu1.student2";
+	Class.forName("com.mysql.jdbc.Driver");
+
+	try {
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/stu1", "root", "1234");
+		System.out.println(conn + ": DB connect 오케이");
+
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate(query_create);
+			System.out.println("테이블 오케이~");
+		} catch (Exception e) {
+		}
+
+		stmt.executeUpdate(query_insert);
+		System.out.println("인써트 오케이~");
+		
+		rs = stmt.executeQuery(query_select); //셀렉트 문에만
+		while(rs.next()){
+			out.print(" id: "+ rs.getString(1));
+			out.print(" name: " + rs.getString(2));
+		}
+		
+		conn.close();
+		
+	} catch (Exception e) {
+		System.out.println("에러에러");
+	}
+	
+%>
+/////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+

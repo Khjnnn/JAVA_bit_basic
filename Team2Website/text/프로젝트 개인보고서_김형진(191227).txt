@@ -1,0 +1,62 @@
+2조 드림캐쳐 프로젝트 개인보고서
+
+				김형진
+
+1. 담당업무
+ DB 설계 및 관리
+   - JSP 연동
+   - 유저 정보 DB 등록 및 관리
+   - 이미지 파일 DB 저장 및 관리
+   - 타임라인 정보 DB 저장 및 관리
+   - 업로드 게시판 
+
+ +++++++++++++++++++++ DB INFO ++++++++++++++++++++++++
+ user_info (회원정보 테이블)
+ 				
+  - user_num (int(11)/PRI)
+  - user_id (varchar(15)/UNI)
+  - user_pw (varchar(20))
+  - user_other (varchar(10))
+ 
+ notice (게시판 < user_info>)
+  - write_num (int(10)/PRI)
+  - title (varchar(30)/디폴트<no title>)
+  - text (mediumtext) 
+  - read_count (int(10))
+  - reg_date (date) >> now() 함수
+  - user_num (FOR) 
+ 
+ upload_img(게시판이미지 < notice)
+  - write_num (FOR)
+  - up_img (blob) 파일저장
+ 
+ dream_img ( 페이지 이미지 )
+  - img_num (int(11)/PRI) 
+  - img_name (varchar(10))
+  - img_path (varchar(255)) //이미지경로
+  - img_category(int(11)) 
+  // 이미지 카테고리 구분 (Ring:1 / String:2 /Feather:3 / Deco:4)
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+ DBconnection() : DB 연결 메소드 
+ DBTableSelect(String tableName) : DB 셀렉트 메소드 (테이블명)
+ MultipartRequest : 파일 업로드 (jsp)
+ class FtpClient / upload() : FTP 서버 접속 및 FTP업로드 메소드 
+
+2. 프로젝트 참여율 
+ 참여율: 20% 
+ - DB 설계 및 관리에 대한 비중이 크지 않았다고 생각합니다.
+   프로젝트 특성상 디자인의 비중이 커 DB의 비중이 크지 않았고 중간중간
+   타팀원의 업로드 게시판 및 기능부분 소스에 대해 일부 참여 하여서 서포트로서의 역할이 더 컸던 것 같습니다.
+
+3. 프로젝트시 배운 기술 
+ - 데이터베이스 MySQL 및 쿼리문에 대해 익숙해지고, HTTP서버에서 jsp,java 연동 오류로 인해
+    톰캣/IIS 연동도 시도해보고 포기하면서 http 서버, ftp 서버에 대해서 조금 알게되었습니다.   
+ - 이미지 파일을 DB에 직접적으로 업로드 구현하는 부분(blob형)을 포기하고 
+    파일 업로드 부분에 대해 구현하면서 파일객체에 대한 개념을 좀 더 배울 수 있었습니다.
+ - 설계 부분을 어떻게 해야하는지 어려움이 많아 더 공부가 필요한 것 같습니다.
+    잘모르지만 배우면서 작성하다보니 많이 미흡했고 ER다이어그램에 대해 아주 조금 알게되었습니다.
+
+4. 프로젝트시 완료 못한 점
+ - 완료 못한 부분은 없지만 디버깅에 대한 부분은 미흡했던 것 같습니다.
+
